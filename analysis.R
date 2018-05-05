@@ -25,13 +25,3 @@ data.frame(select(data.frame(ranges(seqs)), -width),
            protein_id = seqs_df[["protein_id"]],
            product = seqs_df[["product"]],
            note = seqs_df[["note"]])
-
-
-
-
-mcols(seqs)[["locus_tag"]][[3]]
-mcols(seqs)[["transcript_id"]][[3]]
-mcols(seqs)[["function"]][[3]]
-mcols(seqs)[["product"]][[3]]
-mcols(seqs)[["protein_id"]][[3]]
-mcols(seqs)[["note"]][[3]]
