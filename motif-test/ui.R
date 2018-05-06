@@ -19,7 +19,7 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(
       textInput("seq", "Sequence to look for a motif", "TTNAAAANAAAANTT"),
-      numericInput("number_of_motifs", "Number of motifs", value = 3, min = 1, max = 10, step = 1),
+      numericInput("number_of_motifs", "Number of parts", value = 3, min = 1, max = 10, step = 1),
       uiOutput("motif_ui")
     ),
     

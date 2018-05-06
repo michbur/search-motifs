@@ -1,5 +1,5 @@
 library(shiny)
-library(stringr)
+library(stringi)
 
 source("get_motif.R", local = TRUE)
 
@@ -20,12 +20,12 @@ shinyServer(function(input, output) {
   })
   
   output[["motif_position"]] <- renderPrint({
-    str_locate_all(pattern = final_motif(), input[["seq"]])
+    stri_locate_all(input[["seq"]], regex = final_motif())
   })
   
   output[["color_seq"]] <- renderPrint({
     v_seq <- sttrsplit(input[["seq"]], "")[[""]]
-    pos <- str_locate_all(pattern = final_motif(), input[["seq"]])[[1]]
+    pos <- stri_locate_last_regex(pattern = final_motif(), input[["seq"]])[[1]]
     
     paste0("hello input is","<font color=\"#FF0000\"><b>", input$n, "</b></font>") 
     
