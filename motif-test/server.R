@@ -1,28 +1,50 @@
-#
-# This is the server logic of a Shiny web application. You can run the 
-# application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-# 
-#    http://shiny.rstudio.com/
-#
-
 library(shiny)
+library(stringr)
 
 source("get_motif.R", local = TRUE)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-   
-  output$distPlot <- renderPlot({
+  
+  
+  final_motif <- reactive(
+    paste0(sapply(1L:input[["number_of_motifs"]], function(i)
+      process_single_motif(input[[paste0("mot", i)]], 
+                           input[[paste0("len", i)]][1], 
+                           input[[paste0("len", i)]][2])),
+      collapse = "")
+  )
+  
+  output[["final_motif"]] <- renderPrint({
+    final_motif()
+  })
+  
+  output[["motif_position"]] <- renderPrint({
+    str_locate_all(pattern = final_motif(), input[["seq"]])
+  })
+  
+  output[["color_seq"]] <- renderPrint({
+    v_seq <- sttrsplit(input[["seq"]], "")[[""]]
+    pos <- str_locate_all(pattern = final_motif(), input[["seq"]])[[1]]
     
-    # generate bins based on input$bins from ui.R
-    x    <- faithful[, 2] 
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    paste0("hello input is","<font color=\"#FF0000\"><b>", input$n, "</b></font>") 
     
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    apply(pos, 1, function(ith_row)
+      v_seq[ith_row[1]:ith_row[2]]
+    )
     
+  })
+  
+  output[["motif_ui"]] <- renderUI({
+    lapply(1L:input[["number_of_motifs"]], function(i) {
+      list(h3(paste0("Part ", i)),
+           textInput(paste0("mot", i), paste0("Regular expression:"), "X"),
+           sliderInput(paste0("len", i),
+                       paste0("Length:"),
+                       min = 1,
+                       max = 10,
+                       value = c(1, 2)))
+    })
   })
   
 })

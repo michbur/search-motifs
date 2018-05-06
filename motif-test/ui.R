@@ -18,16 +18,17 @@ shinyUI(fluidPage(
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
     sidebarPanel(
-       sliderInput("bins",
-                   "Number of bins:",
-                   min = 1,
-                   max = 50,
-                   value = 30)
+      textInput("seq", "Sequence to look for a motif", "TTNAAAANAAAANTT"),
+      numericInput("number_of_motifs", "Number of motifs", value = 3, min = 1, max = 10, step = 1),
+      uiOutput("motif_ui")
     ),
     
     # Show a plot of the generated distribution
     mainPanel(
-       plotOutput("distPlot")
+      h3("Motif as a regular expression"),
+      verbatimTextOutput("final_motif"),
+      h3("Position of the match"),
+      verbatimTextOutput("motif_position")
     )
   )
 ))
