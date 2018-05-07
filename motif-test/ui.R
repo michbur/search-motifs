@@ -28,7 +28,9 @@ shinyUI(fluidPage(
       h3("Motif as a regular expression"),
       verbatimTextOutput("final_motif"),
       h3("Position of the match"),
-      verbatimTextOutput("motif_position")
+      verbatimTextOutput("motif_position"),
+      h3("Sequence plot"),
+      plotOutput("motif_position_plot")
     )
   )
 ))
