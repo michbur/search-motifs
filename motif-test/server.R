@@ -13,15 +13,27 @@ shinyServer(function(input, output, session) {
                process_single_motif(input[[paste0("mot", i)]], 
                                     input[[paste0("len_min", i)]], 
                                     input[[paste0("len_max", i)]])),
-             ")"),
+             ")"
+             ),
            collapse = "")
+  )
+  
+  final_motif_rev <- reactive(
+    paste0(c("(?=", 
+             sapply(input[["number_of_motifs"]]:1, function(i)
+               process_single_motif(input[[paste0("mot", i)]], 
+                                    input[[paste0("len_min", i)]], 
+                                    input[[paste0("len_max", i)]])),
+             ")"
+    ),
+    collapse = "")
   )
   
   motif_pos <-reactive({
     #stri_locate_all(input[["seq"]], regex = final_motif())
     starts <- gregexpr(final_motif(), input[["seq"]], perl = TRUE)[[1]]
-    ends <- 1 + rev(nchar(input[["seq"]]) - as.vector(gregexpr(final_motif(), stringi::stri_reverse(input[["seq"]]), perl = TRUE)[[1]]))
-    
+    ends <- 1 + rev(nchar(input[["seq"]]) - as.vector(gregexpr(final_motif_rev(), stringi::stri_reverse(input[["seq"]]), perl = TRUE)[[1]]))
+
     lapply(1L:length(starts), function(i)
       starts[i]:ends[i])
   })
