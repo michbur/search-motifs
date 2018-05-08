@@ -5,10 +5,8 @@ library(pbapply)
 
 #awk -v n=1 '/^$/{close("out"n);n++;next} {print > "/home/michal/Dropbox/ann-arbor-collab/gut-microbiom-data/out"n}' 42773.ADKP01000001-ADKP01000236.nuc.gbk
 
-file_name <- "./small-files/out130"
+res <- bind_rows(pblapply(list.files("/home/michal/Dropbox/ann-arbor-collab/gut-microbiom-data/", full.names = TRUE), function(file_name) {
 
-res <- bind_rows(pblapply(list.files("./small-files", full.names = TRUE), function(file_name) {
-  print(file_name)
   dat <- readGenBank(file_name)
   
   seqs <- cds(dat)
@@ -42,3 +40,5 @@ res <- bind_rows(pblapply(list.files("./small-files", full.names = TRUE), functi
     as.data.frame(df_list)
   }
 }))
+
+write.csv(res, file = "Gastrointestinal_tract.csv", row.names = FALSE)
