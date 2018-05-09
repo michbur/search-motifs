@@ -44,7 +44,7 @@ res <- pblapply(list.files("/home/michal/Dropbox/ann-arbor-collab/gut-microbiome
     }, silent = TRUE)
 )
 
-save(res, file = "/home/michal/Dropbox/ann-arbor-collab/gut-microbiom-results/Gastrointestinal_tract.RData")
+save(res, file = "/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/Gastrointestinal_tract.RData")
 # load("Gastrointestinal_tract.RData")
 # 
 # res_df <- bind_rows(res[sapply(res, function(i) class(i) %in% "data.frame")])
