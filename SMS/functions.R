@@ -22,10 +22,22 @@ readGenBank2 <- function(file, text = readLines(file), partial = NA,
   ## we throw it away after if the user set ret.seq=FALSE
   prsed = parseGenBank2(text = text, partial = partial, verbose = verbose,
                         ret.seq = TRUE)
-  ret = make_gbrecord(rawgbk = prsed, verbose = verbose)
-  if(!ret.seq)
-    sequence(ret) = NULL
-  ret
+
+  lineage <- gsub("[ .]", "", prsed[["SOURCE"]][["lineage"]])
+  
+  all_features <- lapply(prsed[["FEATURES"]], function(ith_feature) {
+    if(class(ith_feature) == "data.frame") {
+      data.frame(protein_id = ith_feature[["protein_id"]], translation = ith_feature[["translation"]], 
+                 stringsAsFactors = FALSE)
+    } else {
+      NULL
+    }
+  }) %>% 
+    bind_rows() %>% 
+    mutate(organism = prsed[["SOURCE"]][["organism"]],
+           lineage = paste0(gsub("[ .]", "", prsed[["SOURCE"]][["lineage"]]), collapse = "|"),
+           definition = prsed[["DEFINITION"]]) %>% 
+    select(definition, organism, lineage, protein_id, translation)
 }
 
 parseGenBank2 = function(file, text = readLines(file),  partial = NA,
@@ -50,6 +62,7 @@ parseGenBank2 = function(file, text = readLines(file),  partial = NA,
   resthang[["FEATURES"]] = readFeatures2(spl[["FEATURES"]],
                                          source.only=!ret.anno,
                                          partial = partial)
+
   seqtype = genbankr:::.seqTypeFromLocus(resthang$LOCUS)
   resthang$ORIGIN = if(ret.seq)
     genbankr:::readOrigin(spl[["ORIGIN"]],
@@ -172,7 +185,6 @@ readFeatures2 = function(lines, partial = NA, verbose = FALSE,
     message(Sys.time(), " Starting feature parsing")
   
   resgrs = tapply(lines, featfactor, function(i) {
-    print(length(i))
     do_readfeat(i, partial = partial)
   }, simplify=FALSE)
   if(verbose)
