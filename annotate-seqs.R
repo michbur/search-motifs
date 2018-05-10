@@ -2,7 +2,7 @@ library(dplyr)
 
 files_path <- "/home/michal/Dropbox/signal_final_dat/"
 
-all_prots <- "/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/raw_seq_partial.fasta"
+all_prots <- "/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/raw_seq.fasta"
 
 # SignalP 4.1 --------------------------------------
 
