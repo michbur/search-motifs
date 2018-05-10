@@ -3,6 +3,8 @@ library(genbankr)
 library(Biostrings)
 library(pbapply)
 
+source("./SMS/functions.R")
+
 #awk -v n=1 '/^$/{close("out"n);n++;next} {print > "/home/michal/Dropbox/ann-arbor-collab/gut-microbiom-data/out"n}' 42773.ADKP01000001-ADKP01000236.nuc.gbk
 
 res <- pblapply(list.files("/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-data", full.names = TRUE)[1L:5], function(file_name)
