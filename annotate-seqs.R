@@ -19,6 +19,8 @@ res_signalP <- pblapply(all_prots, function(ith_file) {
 }) %>% 
   bind_rows()
 
+save(res_signalP, file = "/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/res_signalP.RData")
+
 # SignalP 5.0 ---------------------------------------------
 
 res_signalP5 <- pblapply(all_prots, function(ith_file) {
@@ -37,6 +39,8 @@ res_signalP5 <- pblapply(all_prots, function(ith_file) {
 })  %>% 
   bind_rows()
 
+save(res_signalP5, file = "/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/res_signalP5.RData")
+
 # DeepSig ----------------------------
 
 res_deepSig <- pblapply(all_prots, function(ith_file) {
@@ -53,6 +57,8 @@ res_deepSig <- pblapply(all_prots, function(ith_file) {
 })  %>% 
   bind_rows()
 
+save(res_deepSig, file = "/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/res_deepSig.RData")
+
 # TMHMM ----------------------------
 
 res_TMHMM <-  pblapply(all_prots, function(ith_file) {
@@ -64,11 +70,13 @@ res_TMHMM <-  pblapply(all_prots, function(ith_file) {
            topology = sub("Topology=", "", topology)) 
 })
 
+save(res_TMHMM, file = "/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/res_TMHMM.RData")
+
 #file.remove(c("deepSig.txt", "signalP.txt", "output_prediction_summary.txt", "TMHMM.out"))
 
-inner_join(res_signalP, res_deepSig) %>%
-  inner_join(res_signalP5) %>%
-  inner_join(res_TMHMM) %>%
-  dplyr::rename(protein_id = name) %>%
-  data.table::fwrite(file = "/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/Gastrointestinal_tract_annotation.csv", row.names = FALSE,
-                     append = FALSE)
+# inner_join(res_signalP, res_deepSig) %>%
+#   inner_join(res_signalP5) %>%
+#   inner_join(res_TMHMM) %>%
+#   dplyr::rename(protein_id = name) %>%
+#   data.table::fwrite(file = "/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/Gastrointestinal_tract_annotation.csv", row.names = FALSE,
+#                      append = FALSE)
