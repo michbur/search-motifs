@@ -21,6 +21,10 @@ load("/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/Gastrointesti
 
 res_df <- bind_rows(res[sapply(res, function(i) class(i) %in% "data.frame")])
 
+data.table::fwrite(x = res_df, 
+                   file = "/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/Gastrointestinal_tract.csv", 
+                   row.names = FALSE)
+
 seq_splits <- split(1L:nrow(res_df), ceiling(quantile(1L:nrow(res_df), 1L:20/20)))
 
 lapply(1L:length(seq_splits), function(ith_split) {
