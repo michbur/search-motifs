@@ -22,11 +22,3 @@ process_single_motif <- function(motif, len_min, len_max) {
   
   paste0("[", paste0(motif, collapse = ""), "]{", len_min, ",", len_max, "}")
 }
-
-
-
-grep(pattern = paste0("B", process_single_motif("A", 2, 3), "B"), x = c("BAB", "BAAB", "BAAAB", "BAAAAAB"))
-
-expand.grid(list("A", c("B", "BB"), c("CCC", "CCCC", "CCCCC"))) %>% 
-  apply(1, paste0, collapse = "") %>% 
-  cat(sep = "\n")

@@ -11,7 +11,8 @@ library(reshape2)
 
 options(shiny.maxRequestSize=30*1024^2)
 
-options(DT.options = list(dom = "Brtip",
+options(search = list(regex = TRUE, search = 'CXC'),
+        DT.options = list(dom = "Brtip",
                           buttons = c("copy", "csv", "excel", "print"),
                           pageLength = 15
 ))

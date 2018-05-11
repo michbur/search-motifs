@@ -19,7 +19,7 @@ shinyServer(function(input, output, session) {
   )
   
   final_motif_rev <- reactive(
-    paste0(c("(?=", 
+    paste0(c("(?>", 
              sapply(input[["number_of_motifs"]]:1, function(i)
                process_single_motif(input[[paste0("mot", i)]], 
                                     input[[paste0("len_min", i)]], 
