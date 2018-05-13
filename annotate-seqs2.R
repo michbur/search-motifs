@@ -33,7 +33,8 @@ res_TMHMM <-  pblapply(all_prots, function(ith_file) {
     select(name = V1, n_hel = V5, topology = V6) %>% 
     mutate(n_hel = as.numeric(sub("PredHel=", "", n_hel)),
            topology = sub("Topology=", "", topology)) 
-})
+}) %>% 
+  bind_rows()
 
 save(res_TMHMM, file = "/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/res_TMHMM.RData")
 
