@@ -33,3 +33,14 @@ lapply(1L:length(seq_splits), function(ith_split) {
                       file = paste0("/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/sequences/split", 
                                     ith_split, ".fasta"))
 })
+library(dplyr)
+
+load("/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/res_deepSig.RData")
+load("/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/res_signalP.RData")
+load("/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/res_TMHMM.RData")
+
+inner_join(res_signalP, res_deepSig) %>%
+  inner_join(res_TMHMM) %>%
+  dplyr::rename(protein_id = name) %>%
+  data.table::fwrite(file = "/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/Gastrointestinal_tract_annotation.csv", row.names = FALSE,
+                     append = FALSE)
