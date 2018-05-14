@@ -7,15 +7,15 @@ source("./SMS/functions.R")
 
 #awk -v n=1 '/^$/{close("out"n);n++;next} {print > "/home/michal/Dropbox/ann-arbor-collab/gut-microbiom-data/out"n}' 42773.ADKP01000001-ADKP01000236.nuc.gbk
 
-res <- pblapply(list.files("/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-data", full.names = TRUE), 
-                function(file_name)
-                  try({
-                    dat <- data.frame(file = last(strsplit(x = file_name, split = "/", fixed = TRUE)[[1]]),
-                                      suppressMessages(readGenBank2(file_name)), stringsAsFactors = FALSE)
-                  }, silent = TRUE)
-)
-
-save(res, file = "/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/Gastrointestinal_tract.RData")
+# res <- pblapply(list.files("/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-data", full.names = TRUE), 
+#                 function(file_name)
+#                   try({
+#                     dat <- data.frame(file = last(strsplit(x = file_name, split = "/", fixed = TRUE)[[1]]),
+#                                       suppressMessages(readGenBank2(file_name)), stringsAsFactors = FALSE)
+#                   }, silent = TRUE)
+# )
+# 
+# save(res, file = "/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/Gastrointestinal_tract.RData")
 
 load("/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/Gastrointestinal_tract.RData")
 
@@ -41,6 +41,7 @@ load("/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/res_TMHMM.RDa
 
 inner_join(res_signalP, res_deepSig) %>%
   inner_join(res_TMHMM) %>%
-  dplyr::rename(protein_id = name) %>%
+  dplyr::rename(protein_id = name) %>% 
+  inner_join(res_df) %>% 
   data.table::fwrite(file = "/home/michal/Dropbox/ann-arbor-collab/gut-microbiome-results/Gastrointestinal_tract_annotation.csv", row.names = FALSE,
                      append = FALSE)
