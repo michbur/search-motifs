@@ -3,7 +3,7 @@ library(dplyr)
 aas <- c("A", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", 
          "P", "Q", "R", "S", "T", "V", "W", "Y")
 
-
+# process motif in the simple notation
 process_single_motif <- function(motif, len_min, len_max) {
   raw_motif1 <- gsub("[[:space:]]", "", motif) %>% 
     gsub("X", paste0(toupper(biogram:::return_elements("prot")), collapse = ""), .) %>% 
@@ -21,4 +21,13 @@ process_single_motif <- function(motif, len_min, len_max) {
   }
   
   paste0("[", paste0(motif, collapse = ""), "]{", len_min, ",", len_max, "}")
+}
+
+
+get_occurences <- function(motif, seq) {
+  starts <- gregexpr(motif, seq, perl = TRUE)[[1]]
+  ends <- 1 + rev(nchar(seq) - as.vector(gregexpr(final_motif_rev(), stringi::stri_reverse(seq), perl = TRUE)[[1]]))
+  
+  lapply(1L:length(starts), function(i)
+    starts[i]:ends[i])
 }
