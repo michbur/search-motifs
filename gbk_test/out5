@@ -1,0 +1,102 @@
+LOCUS       ADMP01000005             671 bp    DNA     linear   BCT 30-MAR-2010
+DEFINITION  Bacteroides xylanisolvens SD CC 2a contig00223, whole genome
+            shotgun sequence.
+ACCESSION   ADMP01000005 ADMP01000000
+VERSION     ADMP01000005.1  GI:292641577
+DBLINK      BioProject: PRJNA42771
+            BioSample: SAMN00007492
+KEYWORDS    WGS.
+SOURCE      Bacteroides xylanisolvens SD CC 2a
+  ORGANISM  Bacteroides xylanisolvens SD CC 2a
+            Bacteria; Bacteroidetes; Bacteroidia; Bacteroidales;
+            Bacteroidaceae; Bacteroides.
+REFERENCE   1  (bases 1 to 671)
+  AUTHORS   Nelson,K.E., Sutton,G., Torralba,M., Durkin,S., Harkins,D.M.,
+            Montgomery,R., Ziemer,C., Klaassens,E., Ocuiv,P., Morrison,M. and
+            Nelson,K.E.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (29-MAR-2010) The J. Craig Venter Institute, 9704 Medical
+            Center Dr., Rockville, MD 20850, USA
+COMMENT     Bacteroides ovatus is part of the normal human gut flora, however
+            it is the least common of the Bacteroides intestinal isolates. In
+            one comprehensive 16S rDNA sequence-based enumeration of the
+            colonic microbiota of three healthy adult humans it represents, on
+            average, 0.034% of all 16S rDNA sequences and 0.041% of the
+            sequences in its division (Eckburg et. al. (2005)). This organism
+            is occasionally isolated from clinical specimens and can also be
+            isolated from poultry.
+            
+            This genome is part of a collection of seven draft genomes
+            submitted for inclusion within the International Human Microbiome
+            Consortium (IHMC) Data and Analysis Coordination Center (DACC). All
+            of the bacteria were cultured from human stool samples. Funds
+            supporting the genome sequencing at JCVI were provided via a
+            USDA-IFAFS award to the North American Consortium for Genomics of
+            Fibrolytic Bacteria, and CSIRO (Australia).
+            
+            The four strains below were all isolated in Mark Morrison's lab
+            (The Ohio State University, Queensland Biosciences Precinct, 306
+            Carmody Road, St. Lucia QLD 4067, Australia) as part of the
+            Australian Human Gut Microbiome Project, the current contribution
+            of the Commonwealth Scientific and Industrial Research Organization
+            (CSIRO) to the IHMC.
+            
+            Enterococcus faecalis PC1.1 (pid:791166)
+            Enterococcus faecium PC4.1 (pid:791161)
+            Bacteroides vulgatus PC510 (pid:42763)
+            Turicibacter sp. PC909 (pid:42765)
+            
+            The three strains below were isolated in North America by Cherie
+            Ziemer (National Laboratory for Agriculture and the Environment,
+            ARS-USDA, 2202 NSRIC, 2110 University Blvd, Ames, IA 50011-3120) as
+            part of a DARPA-funded project.
+            
+            Bacteroides ovatus SD CMC 3f (pid:42769)
+            Bacteroides xylanisolvens SD CC 1b (pid:42773)
+            Bacteroides ovatus SD CC 2a (pid:42771)
+            
+            ADMP00000000 organism was originally identified as Bacteroides
+            ovatus, and was updated to Bacteroides xylanisolvens in August
+            2013.
+            
+            ##Genome-Assembly-Data-START##
+            Assembly Method       :: Newbler Assembler v. 1.1.03.24-64-7
+            Genome Coverage       :: 14.1x
+            Sequencing Technology :: 454
+            ##Genome-Assembly-Data-END##
+FEATURES             Location/Qualifiers
+     source          1..671
+                     /organism="Bacteroides xylanisolvens SD CC 2a"
+                     /mol_type="genomic DNA"
+                     /strain="SD CC 2a"
+                     /db_xref="taxon:702444"
+     gene            complement(2..>671)
+                     /locus_tag="CW1_4974"
+     CDS             complement(2..>671)
+                     /locus_tag="CW1_4974"
+                     /note="this gene contains a nucleotide ambiguity which may
+                     be the result of a sequencing error"
+                     /codon_start=2
+                     /transl_table=11
+                     /product="conserved domain protein"
+                     /protein_id="EFF59760.1"
+                     /db_xref="GI:292641578"
+                     /translation="LLDQLELLHSSYRNRLTLSSDYQRRFSVIQTVLEQGKNLFAGKK
+                     VSNRIVSIDRHYLRPIIRGKETKSVEFGAKVNNIQIDGISFIEHISFKAFNEGVRLKD
+                     CIHLQQQLTGVRVKALAADSIYANNANRKFCTKYHISTSFKRKGRAAKDEPLRKILRS
+                     ELSRERATRLEGSFGTQKQHYSLARIKARNRKTEVLWIFFGIHTANAVCMIEKVEKKK
+                     RKAA"
+ORIGIN      
+        1 attatgctgc ctttcttttt ttcttttcga ccttttctat catacatacc gcattggctg
+       61 tatgtatccc aaagaaaatc caaagtactt ccgttttcct gtttctagct tttatcctgg
+      121 ccagtgagta atgttgtttc tgcgttccaa aacttccttc caggcgggta gctctttcac
+      181 ggctgagttc cgaccgtaag attttccgaa gcggctcatc tttggcagct ctgcccttac
+      241 gcttaaagga agtacttata tgatattttg tacaaaattt ccggttggca ttattggcat
+      301 agattgaatc cgccgcaagc gccttaaccc taaccccggt cagttgttgt tgcagatgaa
+      361 tacagtcttt caaacgtact ccttcgttaa aagccttaaa ggagatatgt tctataaagg
+      421 agattccgtc tatctgtata ttgttgactt tggctccgaa ttcaacggat ttggtttcct
+      481 tgcctctgat aatggggcga aggtaatgcc ggtcgatact cacgatacgg ttggacactt
+      541 ttttgcctgc aaataaattc ttcccttgct caaggactgt ctgtatgacc gagaaacgtc
+      601 tttggtaatc agaggatagt gtaagcctgt tcctgtagga tgaatgaagc agctccagct
+      661 ggtcaagtaa c
+//
