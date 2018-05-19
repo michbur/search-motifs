@@ -26,8 +26,10 @@ process_single_motif <- function(motif, len_min, len_max) {
 
 get_occurences <- function(motif, seq) {
   starts <- gregexpr(motif, seq, perl = TRUE)[[1]]
-  ends <- 1 + rev(nchar(seq) - as.vector(gregexpr(final_motif_rev(), stringi::stri_reverse(seq), perl = TRUE)[[1]]))
   
   lapply(1L:length(starts), function(i)
-    starts[i]:ends[i])
+    starts[i]:(starts[i] + attr(starts, "match.length")[i] - 1)
+  )
 }
+
+#get_occurences("A[BC]{1,2}C", "AAAABBBBABCAAAACCC")
